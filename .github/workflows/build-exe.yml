@@ -3,7 +3,7 @@ name: Build EXE with PyInstaller
 on:
   push:
     branches: [ main ]
-  workflow_dispatch:   # 手动触发
+  workflow_dispatch:
 
 jobs:
   build:
@@ -11,10 +11,10 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4   # 这里也顺便升级到 v4
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: "3.11"
 
@@ -25,7 +25,7 @@ jobs:
       run: pyinstaller --onefile mastermind.py
 
     - name: Upload EXE artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: mastermind-exe
         path: dist/mastermind.exe
