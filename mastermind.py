@@ -103,17 +103,20 @@ def knuth_interactive():
 
 # 主菜单
 def main():
-    print("=== Mastermind (Knuth 解法) ===")
-    print("1. 自动模式（电脑随机出题并解码）")
-    print("2. 交互模式（你来出题，手动输入反馈）")
-    print("0. 退出")
-    choice = input("请选择模式: ").strip()
-    if choice == "1":
-        auto_mode()
-    elif choice == "2":
-        knuth_interactive()
-    else:
-        print("退出程序。")
+    while True:
+        print("\n=== Mastermind (Knuth 解法) ===")
+        print("1. 自动模式（电脑随机出题并解码）")
+        print("0. 退出")
+        choice = input("请选择模式: ").strip()
+        if choice == "1":
+            auto_mode()
+            input("\n按任意键继续...")
+        elif choice == "0":
+            print("退出程序。")
+            break
+        else:
+            print("⚠️ 无效选择，请重新输入。")
+
 
 if __name__ == "__main__":
     main()
