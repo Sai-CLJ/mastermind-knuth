@@ -16,6 +16,7 @@ def all_codes():
     return list(itertools.product(colors, repeat=4))
 
 # Knuth 的最优解法
+
 def knuth_solver(secret):
     possible = all_codes()
     candidates = possible[:]
@@ -25,13 +26,21 @@ def knuth_solver(secret):
     while True:
         guesses.append(guess)
         feedback = get_feedback(guess, secret)
-        print(f"猜测: {guess}, 反馈: {feedback}")
+
+
+
+
+
+        # 缩小候选集合
+        possible = [p for p in possible if get_feedback(guess, p) == feedback]
+
+        # 打印反馈 + 剩余解数量
+        print(f"猜测: {guess}, 反馈: {feedback}, 剩余可能解: {len(possible)}")
+
 
         if feedback == (4, 0):
             print(f"✅ 找到答案，共 {len(guesses)} 步")
             return guesses
-
-        possible = [p for p in possible if get_feedback(guess, p) == feedback]
 
         score_map = {}
         for g in candidates:
